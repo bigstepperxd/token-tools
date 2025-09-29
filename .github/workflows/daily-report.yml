@@ -1,0 +1,31 @@
+name: Daily Report Commit
+
+on:
+  schedule:
+    - cron: '5 8 * * *'   # daily at 08:05 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Generate report file
+        run: |
+          mkdir -p reports
+          python token_tracker.py > "reports/report-$(date -u +'%Y%m%d').txt"
+          ls -la reports
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          git commit -m "chore(reports): add daily report $(date -u +'%Y-%m-%d')" || echo "No changes"
+          git push
