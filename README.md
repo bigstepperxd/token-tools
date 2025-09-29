@@ -15,3 +15,4 @@ Small collection of lightweight tools and examples for exploring token data and 
    ```bash
    git clone https://github.com/<your-user>/token-tools.git
    cd token-tools
+Notes: schedule set to 08:05 UTC for daily reports.
