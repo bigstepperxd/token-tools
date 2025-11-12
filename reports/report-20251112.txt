@@ -1,0 +1,6 @@
+token-tools report — 2025-11-12T08:38:47.713279Z
+----------------------------------------
+XPL      — Example presale token
+BONK     — Community memecoin example
+----------------------------------------
+count: 2
